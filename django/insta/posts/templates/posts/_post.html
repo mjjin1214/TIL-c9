@@ -1,5 +1,8 @@
 <div class="card" style="width: 18rem;">
   <div class="card-header">
+    {% if post.user.profile.image %}
+    <img src="{{ post.user.profile.image.url }}" width="25" alt="{{ post.user.profile.image }}">
+    {% endif %}
     <a href="{% url 'people' post.user.username %}">{{ post.user.username }}</a>
   </div>
   <div id="post_{{ post.id }}" class="carousel slide" data-ride="carousel">
@@ -32,8 +35,8 @@
     </p>
   </div>
   <div class="card-body">
-    {% if post.user == user %}
     <p class="card-text">{{ post.content }}</p>
+    {% if post.user == user %}
     <a href="{% url 'posts:update' post.id %}" class="btn btn-info">Edit</a>
     <a href="{% url 'posts:delete' post.id %}" class="btn btn-danger">Delete</a>
     {% endif %}
