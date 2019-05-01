@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <h1>{{ person.username }} Detail</h1>
+    {% if user in person.followers.all %}
+        <a href="{% url 'accounts:follow' user.id %}">Following</a>
+    {% else %}
+        <a href="{% url 'accounts:follow' user.id %}">Follow</a>
+    {% endif %}
+    <p>Followers : {{ person.followers.count }}, Followings : {{ person.followings.count }}</p>
+{% endblock %}

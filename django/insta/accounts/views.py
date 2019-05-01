@@ -108,3 +108,8 @@ def follow(request, user_id):
         # 1. people을 follow하기
         people.followers.add(request.user)
     return redirect('people', people.username)
+    
+    
+def edit(request, user_id):
+    form = CustomForm(instance=request.user)
+    return render(request, 'accounts/edit.html', {'form':form})
